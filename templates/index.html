@@ -1,19 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Payment QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            margin-top: 20px;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
-    </div>
+    <h1>Scan to Pay</h1>
+    <p>Scan the QR code below to make a payment to the account holder:</p>
+    <img src="{{ url_for('static', filename='qrcode.png') }}" alt="QR Code">
+    <p>Account Name: Nilesh Ranjan</p>
+    <p>Account Number: 55530100004088</p>
+    <p>IFSC Code: BARB0GUMIAX</p>
 </body>
-
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+</head>
+<body>
+    <h1>Processing Payment of INR {{ amount / 100 }}</h1>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        var options = {
+            "key": "{{ 'RAZORPAY_KEY_ID' }}",  // Razorpay Key from Python (passed in via template)
+            "amount": "{{ amount }}",       // Amount in paisa
+            "currency": "INR",
+            "name": "Your Business Name",
+            "description": "Purchase Description",
+            "order_id": "{{ order_id }}",   // Razorpay Order ID
+            "handler": function (response){
+                // Send payment details back to Flask for verification
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/payment-success';
+
+                var paymentInput = document.createElement('input');
+                paymentInput.name = 'razorpay_payment_id';
+                paymentInput.value = response.razorpay_payment_id;
+                form.appendChild(paymentInput);
+
+                var orderInput = document.createElement('input');
+                orderInput.name = 'razorpay_order_id';
+                orderInput.value = response.razorpay_order_id;
+                form.appendChild(orderInput);
+
+                var signatureInput = document.createElement('input');
+                signatureInput.name = 'razorpay_signature';
+                signatureInput.value = response.razorpay_signature;
+                form.appendChild(signatureInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            },
+            "prefill": {
+                "name": "Your Customer Name",
+                "email": "customer@example.com",
+                "contact": "YourPhoneNumber"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    </script>
+</body>
+</html>
