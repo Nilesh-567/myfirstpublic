@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <h1 id="myh">Hello World</h1>
+        <p id="myp">Good Morning</p>
+        <h2 id="myd">Good Evening</h2>
+        <h3 id="3">Good Night</h3>
+        <script type="module">
+            import both from "./script.js";
+
+var head=document.getElementById("myh");
+var para=document.getElementById("myp");
+var head2=document.getElementById("myd");
+var head3=document.getElementById("3");
+head.innerHTML="your sum is "+both.sum(5,3);
+para.innerHTML="your sub is "+both.sub(5,3);
+both.arr.unshift(6);
+head2.innerHTML="array : "+both.arr; 
+head3.innerHTML="sort : "+both.arr.sort()+"       ,      add : "+both.arr.reduce((t,c) => t+c , 0); 
+        </script>
+    
+    </body>
+</html>

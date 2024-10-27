@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <h1>good morning</h1>
+    <div id="root1">hii</div>
+    <div id="root2">hii</div>
+    <div id="root3">hii</div>
+    <div id="root4">hii</div>
+
+
+   <script src="https://www.unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+   <script src="https://www.unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+       <p> thank you </p>
+   <script>
+          // using createElement method 
+      var div1 = document.getElementById("root1");
+      var element1 = React.createElement('h2', {},'Root1');
+      ReactDOM.render(element1,div1);
+       </script>
+
+       <script>
+         //  using functional component 
+      var div2 = document.getElementById("root2");
+      function ele2() {
+  return <h2>root2 </h2>;
+}
+
+ReactDOM.render(<ele2 />, div2);
+
+      /*
+      function ele2()  {
+        return <h2>Root2</h2>;
+      }; 
+      var element2 = <ele2 />;
+      ReactDOM.render(element2,div2);
+*/
+       </script>
+
+      <script>
+          //  using jsx
+      var div3 = document.getElementById("root3");
+      var element3 = <h2>Root3</h2>;
+      ReactDOM.render(element3,div3);
+  
+      </script>
+  </body>
+</html>
